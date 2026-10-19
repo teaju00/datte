@@ -1,6 +1,6 @@
 # 다 때가 있다
 
-각리중학교 일정 웹앱(구글 앱스 스크립트)의 공개 시작 페이지입니다. 주소: https://dattae.teaju.ai.kr/ (DNS는 Vercel의 teaju.ai.kr에 CNAME dattae → teaju00.github.io)
+각리중학교 일정 웹앱(구글 앱스 스크립트)의 공개 시작 페이지입니다. 주소: https://dattae.teaju.ai.kr/ (Vercel 프로젝트로 배포 — 이 저장소 main에 올리면 Vercel이 다시 배포한다)
 
 - `index.html` — 앱을 화면 가득 띄웁니다. 구글 계정이 여럿 로그인된 브라우저에서 앱 주소를 바로 열면
   「현재 파일을 열 수 없습니다」가 나오는 구글 쪽 제약을 비켜 가려고, 이 페이지 안에 앱을 넣어 엽니다.
