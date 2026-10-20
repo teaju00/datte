@@ -59,6 +59,9 @@
   nav.toc a { display: block; padding: 5px 8px; border-radius: 6px; color: var(--ink-2); text-decoration: none; }
   nav.toc a::before { content: counter(t) '. '; color: var(--ink-3); }
   nav.toc a:hover { background: var(--accent-soft); color: var(--ink); }
+  /* 지금 읽는 절 — 아래 스크립트가 aria-current를 옮긴다 */
+  nav.toc a[aria-current="true"] { background: var(--accent-soft); color: var(--ink); font-weight: 600; box-shadow: inset 3px 0 0 var(--accent); }
+  nav.toc a[aria-current="true"]::before { color: var(--accent); }
   @media (max-width: 860px) {
     .wrap { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 20px; }
     nav.toc { position: static; background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 12px; }
@@ -394,5 +397,27 @@
     <footer>그림은 예시 자료로 찍은 화면이라 실제 일정·이름과 다릅니다. · 2026년 10월판</footer>
   </main>
 </div>
+<script>
+  // 차례를 지금 읽는 절과 맞춘다 — 화면 위에서 1/4 지점을 지난 마지막 절, 맨 아래까지 내리면 마지막 절
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc ol a'));
+    var pairs = links.map(function (a) { return { a: a, sec: document.getElementById(a.getAttribute('href').slice(1)) }; })
+      .filter(function (p) { return p.sec; });
+    var cur = null, ticking = false;
+    function update() {
+      ticking = false;
+      var line = window.innerHeight / 4, pick = pairs[0];
+      pairs.forEach(function (p) { if (p.sec.getBoundingClientRect().top <= line) pick = p; });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) pick = pairs[pairs.length - 1];
+      if (pick === cur) return;
+      if (cur) cur.a.removeAttribute('aria-current');
+      pick.a.setAttribute('aria-current', 'true');
+      cur = pick;
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
 </body>
 </html>
