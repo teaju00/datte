@@ -60,8 +60,8 @@
   nav.toc a::before { content: counter(t) '. '; color: var(--ink-3); }
   nav.toc a:hover { background: var(--accent-soft); color: var(--ink); }
   /* 지금 읽는 절 — 아래 스크립트가 aria-current를 옮긴다 */
-  nav.toc a[aria-current="true"] { background: var(--accent-soft); color: var(--ink); font-weight: 600; box-shadow: inset 3px 0 0 var(--accent); }
-  nav.toc a[aria-current="true"]::before { color: var(--accent); }
+  nav.toc a[aria-current="true"], nav.toc a[aria-current="true"]:hover { background: var(--accent); color: var(--surface); font-weight: 600; border-radius: 8px; }
+  nav.toc a[aria-current="true"]::before { color: var(--surface); }
   @media (max-width: 860px) {
     .wrap { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 20px; }
     nav.toc { position: static; background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 12px; }
@@ -403,9 +403,8 @@
     var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc ol a'));
     var pairs = links.map(function (a) { return { a: a, sec: document.getElementById(a.getAttribute('href').slice(1)) }; })
       .filter(function (p) { return p.sec; });
-    var cur = null, ticking = false;
+    var cur = null;
     function update() {
-      ticking = false;
       var line = window.innerHeight / 4, pick = pairs[0];
       pairs.forEach(function (p) { if (p.sec.getBoundingClientRect().top <= line) pick = p; });
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) pick = pairs[pairs.length - 1];
@@ -414,7 +413,8 @@
       pick.a.setAttribute('aria-current', 'true');
       cur = pick;
     }
-    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    // 절 11개의 위치만 재므로 스크롤마다 바로 부른다(그리기 타이밍을 기다리면 창이 가려졌을 때 멈춘다)
+    window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
