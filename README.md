@@ -6,6 +6,8 @@
   「현재 파일을 열 수 없습니다」가 나오는 구글 쪽 제약을 비켜 가려고, 이 페이지 안에 앱을 넣어 엽니다.
   주소 뒤 값(`?dept=2학년부` 등)은 앱으로 넘깁니다.
 - `favicon.ico`, `icon-*.png` — 탭·휴대폰 홈 화면 아이콘(「다 때가 있다」).
+- `manual/index.html` — 선생님용 사용 설명서(https://dattae.teaju.ai.kr/manual/). 그림까지 든 한 파일이다. 고치는 곳은 앱 저장소 `docs/manual/`이고,
+  거기서 `node tools/build-manual.js <이 저장소 경로>`로 다시 만든다. 바탕화면 바로가기 cmd가 바로가기를 만든 뒤 이 주소를 연다.
 - 바탕화면 바로가기는 이 페이지에서 설치하지 않는다 — 앱 저장소의 `share/다 때가 있다 설치.cmd`를 나눠 준다.
 
 앱 코드는 비공개 저장소 `teaju00/gakri-board`에 있습니다. 앱 배포 주소가 바뀌면 `index.html`의 iframe 주소를 고칩니다.
