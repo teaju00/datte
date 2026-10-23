@@ -5,6 +5,8 @@
 - `index.html` — 앱을 화면 가득 띄웁니다. 구글 계정이 여럿 로그인된 브라우저에서 앱 주소를 바로 열면
   「현재 파일을 열 수 없습니다」가 나오는 구글 쪽 제약을 비켜 가려고, 이 페이지 안에 앱을 넣어 엽니다.
   주소 뒤 값(`?dept=2학년부` 등)은 앱으로 넘깁니다.
+- `dev/index.html` — 시험판(https://dattae.teaju.ai.kr/dev/). 앱의 시험판 배포를 띄운다(앱 저장소 `Config.gs`의 `DEV_DEPLOYMENT_ID`).
+  같은 시트를 쓰므로 여기서 올리고 고친 것도 실제로 저장된다. 검색엔진에 걸리지 않게 `noindex`.
 - `favicon.ico`, `icon-*.png` — 탭·휴대폰 홈 화면 아이콘(「다 때가 있다」).
 - `manual/index.html` — 선생님용 사용 설명서(https://dattae.teaju.ai.kr/manual/). 그림까지 든 한 파일이다. 고치는 곳은 앱 저장소 `docs/manual/`이고,
   거기서 `node tools/build-manual.js <이 저장소 경로>`로 다시 만든다. 앱 위쪽 메뉴 「설명서」가 이 주소를 열고, 설명서의 「← 사이트로 돌아가기」가 이 시작 페이지로 돌아온다.
