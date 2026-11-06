@@ -7,6 +7,7 @@
   주소 뒤 값(`?dept=2학년부` 등)은 앱으로 넘깁니다.
 - `dev/index.html` — 시험판(https://dattae.teaju.ai.kr/dev/). 앱의 시험판 배포를 띄운다(앱 저장소 `Config.gs`의 `DEV_DEPLOYMENT_ID`).
   같은 시트를 쓰므로 여기서 올리고 고친 것도 실제로 저장된다. 검색엔진에 걸리지 않게 `noindex`.
+- `dev/manual/index.html` — 시험판 설명서(https://dattae.teaju.ai.kr/dev/manual/). 시험판에만 있는 기능까지 적었다. 앱 저장소에서 `node tools/build-manual.js <이 저장소 경로> --dev`로 만든다. 시험판 앱의 「설명서」가 연다. 검색엔진 제외.
 - `favicon.ico`, `icon-*.png` — 탭·휴대폰 홈 화면 아이콘(「다 때가 있다」).
 - `manual/index.html` — 선생님용 사용 설명서(https://dattae.teaju.ai.kr/manual/). 그림까지 든 한 파일이다. 고치는 곳은 앱 저장소 `docs/manual/`이고,
   거기서 `node tools/build-manual.js <이 저장소 경로>`로 다시 만든다. 앱 위쪽 메뉴 「설명서」가 이 주소를 열고, 설명서의 「← 사이트로 돌아가기」가 이 시작 페이지로 돌아온다.
